@@ -13,30 +13,30 @@ touch fifo.txt
 rm mpg123.fifo
 mkfifo mpg123.fifo
 
-radiostation()        {
+radiostation()          {
                       mpg123 --control --utf8 --title --preload 1 --buffer 768 --smooth $1 > mpg123.fifo 2>&1> /dev/null &
                       cat mpg123.fifo >>fifo.txt &
                       result=$(tail -n 30 fifo.txt|grep -a --line-buffered "StreamTitle"| sed -e 's/;.*//' -e 's/.*=//' -e "s/'//g")
                       display_result "Webradio" 
                       
-                      }
+                         }
 
-
-display_result() {
-                  gdialog --title "$1" \
-                  --no-collapse \
-                  --stdout \
-                  --infobox "$result" 0 0 \
-                 }
+display_result()         {
+                      gdialog --title "$1" \
+                              --no-collapse \
+                              --stdout \
+                              --msgbox "$result" 0 0 \
+                              
+                         }
 
 while true; do
   exec 3>&1
   selection=$(gdialog \
     --backtitle "SmaRPt Webradio" \
-    --title "Webradio" \
+    --title "Senderliste" \
     --clear \
     --cancel-label "Exit" \
-    --menu "Senderauswahl:" $HEIGHT $WIDTH 4 \
+    --menu "Please select:" $HEIGHT $WIDTH 4 \
     "1" "Radio1" \
     "2" "Radio2" \
     "3" "Radio3" \
@@ -52,10 +52,10 @@ while true; do
       ;;
       $DIALOG_OK)
       killall mpg123
-      ;;
-           
+       ;;
     $DIALOG_ESC)
       clear
+   #   echo "Program aborted." >&2
       killall mpg123
       exit 1
       ;;
@@ -63,7 +63,7 @@ while true; do
   case $selection in
     0 )
       clear
-  #    echo "Program terminated."
+  
       killall mpg123
       ;;
     1 )
@@ -73,7 +73,7 @@ while true; do
    radiostation http://relay.181.fm:8072 
     ;;
     3 )
-    radiostation http://icyrelay.181.fm/181-blues_128k.mp3
+       radiostation http://icyrelay.181.fm/181-blues_128k.mp3
      ;;
   esac
 done
