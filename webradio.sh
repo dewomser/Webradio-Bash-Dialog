@@ -14,7 +14,7 @@ rm mpg123.fifo
 mkfifo mpg123.fifo
 
 radiostation()          {
-                      mpg123 --control --utf8 --title --preload 1 --buffer 768 --smooth $1 > mpg123.fifo 2>&1> /dev/null &
+                      mpg123 --control --utf8 --title --preload 1 --buffer 768 --smooth "$1" > mpg123.fifo 2>&1> /dev/null &
                       cat mpg123.fifo >>fifo.txt &
                       result=$(tail -n 30 fifo.txt|grep -a --line-buffered "StreamTitle"| sed -e 's/;.*//' -e 's/.*=//' -e "s/'//g")
                       display_result "Webradio" 
