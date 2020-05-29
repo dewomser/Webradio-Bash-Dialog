@@ -1,6 +1,6 @@
-# Webradio-Bash-Dialog 
+# Webradio-Bash-Dialog alpha pre Versionen
 
-[![Build Status](https://travis-ci.org/dewomser/Webradio-Bash-Dialog.svg?branch=master)](https://travis-ci.org/dewomser/Webradio-Bash-Dialog)
+Hier gibts Testversionen für besseres Radio. Achtung ungetestet !!
 
 ## GNome
 A Bash  API with Dialog  for Internetradio 
