@@ -1,20 +1,27 @@
 #!/bin/bash
+#----------------
+# Dieses Radio braucht eine Liste
+
+## entweder von Github downloaden
+# radio.txt in den selben Ordner kopieren wie das Script
+# In der Zeile mpg123…  die URL ersetzten durch radio.txt 
+
+## Oder nichts machen (default)
+# dann wird die Liste von Github geholt.
+# Macht Sinn, weil für Internetradio muß man sowieso online sein.
+# ------------------
+
+command -v kdialog >/dev/null 2>&1 || { echo -e "\eDieses Radio benötigt Kdialog. Das Programm 'kdialog' muss installiert werden.\e[0m" >&2; exit 1; }
+command -v mpg123 >/dev/null 2>&1 || { kdialog --sorry "Kdialog ist installiert, wenn Du jetzt noch\n'mpg123' instalierst, funktioniert das Radio !" >&2; exit 1; }
+
+
+
 loopy=1
 rm  fifo.txt
 touch fifo.txt
 
-#Dieses radio braucht eine Liste
-#radio.txt im selben Ordner
-#Die Liste kannn angelegt werden. Beispiel:
-
-#echo"http://swr-swr3-live.cast.addradio.de/swr/swr3/live/mp3/128/stream.mp3" > radio.txt
-#echo"http://relay.181.fm:8042" >> radio.txt
-#echo"http://relay.181.fm:8072" >> radio.txt
-
-
-
 radiostation()          {
-                      mpg123 --control --utf8 -@ radio.txt --title --preload 1 --buffer 768 --smooth -l "$1" >> fifo.txt  2>&1> /dev/null &
+                      mpg123 --control --utf8 -@ http://raw.githubusercontent.com/dewomser/Webradio-Bash-Dialog/master/radio.txt --title --preload 1 --buffer 768 --smooth -l "$1" >> fifo.txt  2>&1> /dev/null &
                       sleep 1
                       result=$(tail -n 25 fifo.txt|grep -a --line-buffered "StreamTitle"| sed -e 's/;.*//' -e 's/.*=//' -e "s/'//g")
                       #station="$1. Radio"
