@@ -1,7 +1,8 @@
 #!/bin/bash
 
-command -v kdialog >/dev/null 2>&1 || { echo -e "\eDieses Radio benötigt Kdialog. Das Programm 'kdialog' muss installiert werden.\e[0m" >&2; exit 1; }
+command -v kdialog >/dev/null 2>&1 || { echo -e "\e[41mDieses Radio benötigt Kdialog. Das Programm 'kdialog' muss installiert werden.\e[0m" >&2; exit 1; }
 command -v mpg123 >/dev/null 2>&1 || { kdialog --sorry "Kdialog ist installiert, wenn Du jetzt noch\n'mpg123' instalierst, funktioniert das Radio !" >&2; exit 1; }
+
 
 
 
