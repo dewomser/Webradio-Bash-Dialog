@@ -10,3 +10,5 @@ https://untergang.de/index.php?view=article&id=57:ein-webradio-und-das-smarpt
 
 ## KDE-Plasma
 radiox1.sh ist ein anderes Internetradio benutzt wird Kdialog und mpg123
+
+radiox2.sh ist ähnlich dem radiox1.sh nur mit externer Radioliste "radio.txt"

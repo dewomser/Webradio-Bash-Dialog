@@ -2,9 +2,10 @@
 
 [![Build Status](https://travis-ci.org/dewomser/Webradio-Bash-Dialog.svg?branch=master)](https://travis-ci.org/dewomser/Webradio-Bash-Dialog)
 
-## GNome
+## Gnome
 A Bash  API with Dialog  for Internetradio 
 To play this radio, mpg123 and (gdialog or zenity) is needed.
+for tiny screens only 1 Window at a time
 
 https://untergang.de/index.php?view=article&id=57:ein-webradio-und-das-smarpt
 

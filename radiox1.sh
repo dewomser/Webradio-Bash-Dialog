@@ -6,8 +6,10 @@ touch fifo.txt
 
 radiostation()          {
                       mpg123 --control --utf8 --title --preload 1 --buffer 768 --smooth "$1" >> fifo.txt  2>&1> /dev/null &
+                      sleep 1
                       result=$(tail -n 40 fifo.txt|grep -a --line-buffered "StreamTitle"| sed -e 's/;.*//' -e 's/.*=//' -e "s/'//g")
-                      station=$1
+                      #station=$1
+                      station=$(tail -n 10 fifo.txt|grep -m1 --line-buffered "ICY-NAME"| sed -e 's/ICY-NAME: //' -e 's/ /_/g' -e 's/\./_/g' )
                       kdialog --title "Radio Info" --passivepopup "$result" 10
                       
                       }
