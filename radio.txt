@@ -1,3 +1,0 @@
-http://relay.181.fm:8072
-http://relay.181.fm:8042
-http://swr-swr3-live.cast.addradio.de/swr/swr3/live/mp3/128/stream.mp3
