@@ -39,7 +39,7 @@ radiostation()          {
                       
 while [ "$loopy" -eq 1 ] ; do
 
- wahl=$(kdialog --title "K+Radio" --radiolist "$station" ${sender1[*]} ${sender2[*]} ${sender3[*]} )
+ wahl=$(kdialog --title "K+Radio" --radiolist "$station" "${sender1[0]}" "${sender1[1]}" "${sender1[2]}" "${sender2[0]}" "${sender2[1]}" "${sender2[2]}" "${sender3[0]}" "${sender3[1]}" "${sender3[2]}" )
 
  onoff=$?
 
