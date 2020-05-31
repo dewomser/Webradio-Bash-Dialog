@@ -1,5 +1,5 @@
 # Webradio-Bash-Dialog 
-
+[![Build Status](https://travis-ci.org/dewomser/Webradio-Bash-Dialog.svg?branch=master)](https://travis-ci.org/dewomser/Webradio-Bash-Dialog)
 ## Gnome
 A Bash  API with Dialog  for Internetradio 
 To play this radio, mpg123 and (gdialog or zenity) is needed.
