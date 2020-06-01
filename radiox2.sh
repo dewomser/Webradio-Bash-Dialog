@@ -29,9 +29,11 @@ touch fifo.txt
 radiostation()         {
                         mpg123 --control --utf8 -@ radio.txt --title --preload 1 --buffer 768 --smooth -l "$1" >> fifo.txt  2>&1> /dev/null &
                         if [ "$radiostation_letzt" -ne "$*" ] ; then sleep 2 ; fi ; radiostation_letzt=$*
-                        result=$(tail -n 25 fifo.txt|grep -a --line-buffered "StreamTitle"| sed -e 's/;.*//' -e 's/.*=//' -e "s/'//g")
-                        station=$(tail -n 10 fifo.txt|grep -m1 --line-buffered "ICY-NAME"| sed -e 's/ICY-NAME: //' -e 's/ /_/g' -e 's/\./_/g' )
+                        result1=$(tail -n 30 fifo.txt)
+                        result=$(echo "$result1" | grep -a --line-buffered "StreamTitle"| sed -e 's/;.*//' -e 's/.*=//' -e "s/'//g")
+                        station=$(echo "$result1" | grep "ICY-NAME" | tail -1 | sed -e 's/ICY-NAME: //' -e 's/ /_/g' -e 's/\./_/g' )
                         kdialog --title "Radio Info" --passivepopup "$result" 10
+                        
                         }
 
 while [ "$loopy" -eq 1 ] ; do
