@@ -13,13 +13,27 @@ command -v mpg123 >/dev/null 2>&1 || { kdialog --sorry "Kdialog ist installiert,
 # 1-3 = Reihenfolge  | Radionamen | on/off = Aus/Abgewählt | url1-3 =Streaming-URL 
 sender1=(1 DotFM_8072 off) ; url1="http://relay.181.fm:8072"
 sender2=(2 DotFM_8042 off) ; url2="http://relay.181.fm:8042"
-sender3=(3 SWR3 off )      ; url3="http://swr-swr3-live.cast.addradio.de/swr/swr3/live/mp3/128/stream.mp3"
+sender3=(3 Antenne_Bayern off) ; url3="http://mp3channels.webradio.antenne.de/antenne"
+sender4=(4 Nova off) ; url4="http://st03.dlf.de/dlf/03/128/mp3/stream.mp3"
+sender5=(5 HR-INFO off); url5="http://hr-hrinfo-live.cast.addradio.de/hr/hrinfo/live/mp3/128/stream.mp3"
+sender6=(6 Rockland off) ; url6="http://188.94.97.90/rockland.mp3"
+sender7=(7 SWR3 off) ; url7="http://swr-swr3-live.cast.addradio.de/swr/swr3/live/mp3/128/stream.mp3"
+
+
+
+
 #-------------------bis hier her--------------------------------
 
 station=Radiosender
 echo $url1 > radio.txt
-echo $url2 >> radio.txt
-echo $url3 >> radio.txt
+{
+echo $url2
+echo $url3
+echo $url4
+echo $url5
+echo $url6 
+echo $url7
+} >> radio.txt
 
 loopy=1
 radiostation_letzt=0
@@ -38,7 +52,7 @@ radiostation()         {
 
 while [ "$loopy" -eq 1 ] ; do
 
-    wahl=$(kdialog --icon music --title "K+Radio" --radiolist "$station" "${sender1[0]}" "${sender1[1]}" "${sender1[2]}" "${sender2[0]}" "${sender2[1]}" "${sender2[2]}" "${sender3[0]}" "${sender3[1]}" "${sender3[2]}" )
+    wahl=$(kdialog --icon music --title "K+Radio" --radiolist "$station" "${sender1[0]}" "${sender1[1]}" "${sender1[2]}" "${sender2[0]}" "${sender2[1]}" "${sender2[2]}" "${sender3[0]}" "${sender3[1]}" "${sender3[2]}" "${sender4[0]}" "${sender4[1]}" "${sender4[2]}" "${sender5[0]}" "${sender5[1]}" "${sender5[2]}" "${sender6[0]}" "${sender6[1]}" "${sender6[2]}" "${sender7[0]}" "${sender7[1]}" "${sender7[2]}")
 
     onoff=$?
 
@@ -50,9 +64,25 @@ while [ "$loopy" -eq 1 ] ; do
     sender1[2]=off
     sender2[2]=off
     sender3[2]=off
+    sender4[2]=off
+    sender5[2]=off
+    sender6[2]=off
+    sender7[2]=off
     fi
 
-    if [ "$wahl" = 3 ]; then
+    if [ "$wahl" = 7 ]; then
+    radiostation 7
+    sender7[2]=on
+    elif [ "$wahl" = 6 ]; then
+    radiostation 6
+    sender6[2]=on
+    elif [ "$wahl" = 5 ]; then
+    radiostation 5
+    sender5[2]=on
+    elif [ "$wahl" = 4 ]; then
+    radiostation 4
+    sender4[2]=on
+    elif [ "$wahl" = 3 ]; then
     radiostation 3
     sender3[2]=on
     elif [ "$wahl" = 2 ]; then
