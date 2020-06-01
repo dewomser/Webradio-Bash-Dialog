@@ -21,27 +21,24 @@ echo $url1 > radio.txt
 echo $url2 >> radio.txt
 echo $url3 >> radio.txt
 
-
 loopy=1
+radiostation_letzt=0
 rm  fifo.txt
 touch fifo.txt
 
-radiostation()          {
-                      
-                      mpg123 --control --utf8 -@ radio.txt --title --preload 1 --buffer 768 --smooth -l "$1" >> fifo.txt  2>&1> /dev/null &
-                      sleep 1
-                      result=$(tail -n 25 fifo.txt|grep -a --line-buffered "StreamTitle"| sed -e 's/;.*//' -e 's/.*=//' -e "s/'//g")
-                      station=$(tail -n 10 fifo.txt|grep -m1 --line-buffered "ICY-NAME"| sed -e 's/ICY-NAME: //' -e 's/ /_/g' -e 's/\./_/g' )
-                      kdialog --title "Radio Info" --passivepopup "$result" 10
-                      
-                      }
+radiostation()         {
+                        mpg123 --control --utf8 -@ radio.txt --title --preload 1 --buffer 768 --smooth -l "$1" >> fifo.txt  2>&1> /dev/null &
+                        if [ "$radiostation_letzt" -ne "$*" ] ; then sleep 2 ; fi ; radiostation_letzt=$*
+                        result=$(tail -n 25 fifo.txt|grep -a --line-buffered "StreamTitle"| sed -e 's/;.*//' -e 's/.*=//' -e "s/'//g")
+                        station=$(tail -n 10 fifo.txt|grep -m1 --line-buffered "ICY-NAME"| sed -e 's/ICY-NAME: //' -e 's/ /_/g' -e 's/\./_/g' )
+                        kdialog --title "Radio Info" --passivepopup "$result" 10
+                        }
 
-                      
 while [ "$loopy" -eq 1 ] ; do
 
- wahl=$(kdialog --title "K+Radio" --radiolist "$station" "${sender1[0]}" "${sender1[1]}" "${sender1[2]}" "${sender2[0]}" "${sender2[1]}" "${sender2[2]}" "${sender3[0]}" "${sender3[1]}" "${sender3[2]}" )
+    wahl=$(kdialog --icon music --title "K+Radio" --radiolist "$station" "${sender1[0]}" "${sender1[1]}" "${sender1[2]}" "${sender2[0]}" "${sender2[1]}" "${sender2[2]}" "${sender3[0]}" "${sender3[1]}" "${sender3[2]}" )
 
- onoff=$?
+    onoff=$?
 
     if [ $onoff -eq 1 ]; then
     killall mpg123
@@ -52,8 +49,8 @@ while [ "$loopy" -eq 1 ] ; do
     sender2[2]=off
     sender3[2]=off
     fi
-        
-   if [ "$wahl" = 3 ]; then
+
+    if [ "$wahl" = 3 ]; then
     radiostation 3
     sender3[2]=on
     elif [ "$wahl" = 2 ]; then
@@ -63,9 +60,6 @@ while [ "$loopy" -eq 1 ] ; do
     radiostation 1
     sender1[2]=on
     fi
-done 
+done
 
-exit   
-    
-    
-    
+exit
