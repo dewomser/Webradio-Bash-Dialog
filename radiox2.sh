@@ -37,7 +37,9 @@ echo $url7
 
 loopy=1
 radiostation_letzt=0
-rm  fifo.txt
+if [ -f fifo.txt ]; then
+  rm fifo.txt
+fi
 touch fifo.txt
 
 radiostation()         {
