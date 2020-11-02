@@ -57,12 +57,11 @@ while [ "$loopy" -eq 1 ] ; do
     wahl=$(kdialog --icon music --title "K+Radio" --radiolist "$station" "${sender1[0]}" "${sender1[1]}" "${sender1[2]}" "${sender2[0]}" "${sender2[1]}" "${sender2[2]}" "${sender3[0]}" "${sender3[1]}" "${sender3[2]}" "${sender4[0]}" "${sender4[1]}" "${sender4[2]}" "${sender5[0]}" "${sender5[1]}" "${sender5[2]}" "${sender6[0]}" "${sender6[1]}" "${sender6[2]}" "${sender7[0]}" "${sender7[1]}" "${sender7[2]}")
 
     onoff=$?
-
+    pkill -f mpg123  
+    
     if [ $onoff -eq 1 ]; then
-    killall mpg123
     exit
     elif [ $onoff -eq 0 ]; then
-    killall mpg123
     sender1[2]=off
     sender2[2]=off
     sender3[2]=off
