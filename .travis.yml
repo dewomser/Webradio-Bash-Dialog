@@ -1,3 +1,7 @@
+branches:
+  only:
+  - master
+
 language: shell
 script:
-- shellcheck *.sh
+  - bash -c 'shopt -s globstar nullglob; shellcheck **/*.{sh,ksh,bash}'
