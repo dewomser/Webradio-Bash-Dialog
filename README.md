@@ -13,7 +13,8 @@
 * mpg123 Version 1.25.13  
 * Irgendwas mit KDE/Plasma (OS Kubuntu 20.04.1 LTS x86_64)
 * Shell: bash Version 5.0.17
-
+* ACHTUNG! Radio startet nur so: **cd ~/foo_radio ; /bin/bash radiox2.sh**  Pull request ist willkommen.
+ 
 ## Radio für Gnome und winzige Displays
 A Bash  API with Dialog  for Internetradio 
 To play this radio, mpg123 and (gdialog or zenity) is needed.
