@@ -45,15 +45,15 @@ while true; do
   exec 3>&-
   
   case $exit_status in
-    $DIALOG_CANCEL)
+    "$DIALOG_CANCEL")
       clear
       killall mpg123
       exit
       ;;
-      $DIALOG_OK)
+      "$DIALOG_OK")
       killall mpg123
        ;;
-    $DIALOG_ESC)
+    "$DIALOG_ESC")
       clear
    #   echo "Program aborted." >&2
       killall mpg123
