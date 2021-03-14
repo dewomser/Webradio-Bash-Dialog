@@ -1,5 +1,6 @@
 # Webradio-Bash-Dialog 
-[![Build Status](https://travis-ci.org/dewomser/Webradio-Bash-Dialog.svg?branch=master)](https://travis-ci.org/dewomser/Webradio-Bash-Dialog)
+
+[![Trigger: Push action](https://github.com/dewomser/Webradio-Bash-Dialog/actions/workflows/shellcheck.yml/badge.svg)](https://github.com/dewomser/Webradio-Bash-Dialog/actions/workflows/shellcheck.yml) Github Actions / Shellcheck geprüft
 
 ## Radio für KDE-Plasma
 ![alt text](https://github.com/dewomser/Webradio-Bash-Dialog/blob/master/bilder/radio.png "DasRadio sieht so aus")
