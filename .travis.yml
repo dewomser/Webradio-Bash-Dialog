@@ -1,7 +1,0 @@
-branches:
-  only:
-  - master
-
-language: shell
-script:
-  - bash -c 'shopt -s globstar nullglob; shellcheck **/*.{sh,ksh,bash}'
