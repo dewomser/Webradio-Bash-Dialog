@@ -15,9 +15,9 @@ sender1=(1 DotFM_8072 off) ; url1="http://relay.181.fm:8072"
 sender2=(2 DotFM_8042 off) ; url2="http://relay.181.fm:8042"
 sender3=(3 Antenne_Bayern off) ; url3="http://mp3channels.webradio.antenne.de/antenne"
 sender4=(4 Nova off) ; url4="http://st03.dlf.de/dlf/03/128/mp3/stream.mp3"
-sender5=(5 HR-INFO off); url5="http://hr-hrinfo-live.cast.addradio.de/hr/hrinfo/live/mp3/128/stream.mp3"
-sender6=(6 Rockland off) ; url6="http://188.94.97.90/rockland.mp3"
-sender7=(7 SWR3 off) ; url7="http://swr-swr3-live.cast.addradio.de/swr/swr3/live/mp3/128/stream.mp3"
+sender5=(5 Soma off); url5="http://ice3.somafm.com/groovesalad-128-mp3"
+sender6=(6 Heavymetal off) ; url6="http://mp3channels.webradio.rockantenne.de/heavy-metal"
+sender7=(7 Hindi off) ; url7="http://198.178.123.14:8216/"
 
 
 
